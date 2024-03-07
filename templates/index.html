@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #90EE90;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            max-width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+        #response-area {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            max-width: 100%;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("form").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                // Collect form data
+                var formData = new FormData(this);
+
+                // Send a POST request to Flask API
+                fetch("/api", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        name: formData.get("name"),
+                        rating: formData.get("rating"),
+                        feedback: formData.get("feedback"),
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Update the response area with the generated response
+                    document.getElementById("generated-response").innerText = data.response;
+                })
+                .catch(error => console.error("Error:", error));
+            });
+        });
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easypaisa Comments</title>
+
+
+</head>
+<body>
+    <h1>Feedback Form</h1>
+    <form method="post" action="/api">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="rating">Rating (1 - 5):</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+
+        <label for="feedback">Comment:</label>
+        <textarea id="feedback" name="feedback" required></textarea><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="response-area">
+        {% if response %}
+        <h2>Generated Response</h2>
+        <p id="generated-response">{{ response }}</p>
+        {% endif %}
+    </div>
+    
+
+</body>
+</html>
