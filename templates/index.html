@@ -1,135 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #90EE90;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            max-width: 100%;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        h2 {
-            margin-top: 20px;
-            color: #333;
-        }
-
-        p {
-            color: #666;
-        }
-        #response-area {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 500px;
-            max-width: 100%;
-        }
-    </style>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelector("form").addEventListener("submit", function (event) {
-                event.preventDefault();
-
-                // Collect form data
-                var formData = new FormData(this);
-
-                // Send a POST request to Flask API
-                fetch("/api", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        name: formData.get("name"),
-                        rating: formData.get("rating"),
-                        feedback: formData.get("feedback"),
-                    }),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Update the response area with the generated response
-                    document.getElementById("generated-response").innerText = data.response;
-                })
-                .catch(error => console.error("Error:", error));
-            });
-        });
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easypaisa Comments</title>
+    <title>Feedback Form</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
+    <!-- Custom styles -->
+    <style>
+        body {
+            background-color: #87CEEB;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 50px;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    <h1>Feedback Form</h1>
-    <form method="post" action="/api">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br>
 
-        <label for="rating">Rating (1 - 5):</label>
-        <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+    <div class="container">
+        <h2 class="mb-4 text-center">Feedback Form</h2>
+        <form id="feedbackForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" maxlength="30" required>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required>
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+            </div>
+            <button type="button" class="btn btn-primary btn-block" onclick="submitForm()">Submit</button>
+        </form>
 
-        <label for="feedback">Comment:</label>
-        <textarea id="feedback" name="feedback" required></textarea><br>
-
-        <input type="submit" value="Submit">
-    </form>
-
-    <div id="response-area">
-        {% if response %}
-        <h2>Generated Response</h2>
-        <p id="generated-response">{{ response }}</p>
-        {% endif %}
+        <div class="mt-4" id="responseContainer">
+            <!-- Response will be displayed here -->
+        </div>
     </div>
-    
+
+    <!-- Add Bootstrap JS and jQuery script links -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Add a script to handle form submission -->
+    <!-- Add a script to handle form submission -->
+    <script>
+        function submitForm() {
+            // Get form data
+            var name = document.getElementById("name");
+            var rating = parseInt(document.getElementById("rating").value);
+            var comment = document.getElementById("comment").value;
+
+            // Validation
+            if (name.value.length > 30) {
+                alert("Name should not exceed 30 characters.");
+                name.style.borderColor = "red";
+                return;
+            } else {
+                name.style.borderColor = ""; // Reset border color if no error
+            }
+
+            if (isNaN(rating) || rating < 1 || rating > 5) {
+                alert("Rating should be a number between 1 and 5.");
+                document.getElementById("rating").style.borderColor = "red";
+                return;
+            } else {
+                document.getElementById("rating").style.borderColor = ""; // Reset border color if no error
+            }
+
+            if (comment.trim() === "") {
+                alert("Comment cannot be empty.");
+                document.getElementById("comment").style.borderColor = "red";
+                return;
+            } else {
+                document.getElementById("comment").style.borderColor = ""; // Reset border color if no error
+            }
+
+            // Show progress bar
+            document.getElementById("responseContainer").innerHTML = '<div class="progress mt-4"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>';
+
+            // Get form data
+            var formData = {
+                name: name.value,
+                rating: rating,
+                comment: comment
+            };
+
+            // Make a POST request to the API endpoint
+            fetch('http://127.0.0.1:5000/api', { // Replace YOUR_API_ENDPOINT_HERE with the actual API endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the response
+                document.getElementById("responseContainer").innerHTML = '<strong>Response:</strong> ' + data.response;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 
 </body>
 </html>
