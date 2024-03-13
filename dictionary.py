@@ -1,7 +1,7 @@
 negativeWordsInRoman = ["ghatya","ghatia","baikar","not good","buri","ajeeb","garbage","useless","crap","horrible",
                         "disappointing","frustrating","frustrated","trash","terrible","awful","unusable","bekaar","worthless",
                         "mayoos kun","mayoos","failure","failed","bad","bura","ineffective","disliked","dislike", "chawal", "sust","sai nai",
-                        "sahi nai", "nai sahi", "nai sai", "nend","not helpful"]
+                        "sahi nai", "nai sahi", "nai sai", "nend","not helpful","slow", "cluttered", "wrong", "transactions"]
 
 greetingsList = ["Hey", "Dear","Hello", "Hi"]
 
@@ -44,3 +44,16 @@ happyComments = ["""We're so glad that you shared your positive experience here.
                    using easypaisa. ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 
                    💚""","""Your satisfaction is our utmost priority. We are glad to make your life easy. Keep using easypaisa! ✨ For any info & 
                    support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚"""]
+
+helpline = ["helpline", "helpline number", "personal assistance", "provide whatsapp number", "contact number", "number",
+            "help me"]
+
+helplineFeedback = """Thank You for using easypaisa ✨. You can reach us out at. https://www.facebook.com/easypaisa/  or You can also contact 
+                     us on Whatsapp: https://wa.me/923411103737?text=Hi"""
+
+negativeSuggestionFeedback = """ Thank you for bringing this issue to our attention 🤙. We're sorry to hear that you're experiencing difficulties with 
+the Easypaisa app. Your satisfaction is our top priority, and we're committed to resolving this matter promptly. Feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚"""
+
+positiveSuggestionFeedback = """Thank you for taking the time to share your suggestion with us!🤙 We're glad to hear that you're overall 
+satisfied with the Easypaisa app ✨. Your feedback is invaluable to us as we strive to continuously improve and enhance our services. Feel 
+free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚 HAPPY BANKING 😊"""

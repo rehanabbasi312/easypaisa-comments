@@ -1,6 +1,7 @@
 import pickle
 import random
-from dictionary import negativeWordsInRoman, apologiseComments, happyComments, greetingsList, highRating, lowRating
+from dictionary import negativeWordsInRoman, apologiseComments, happyComments, greetingsList, highRating, lowRating, helpline
+from dictionary import helplineFeedback, negativeSuggestionFeedback, positiveSuggestionFeedback
 
 
 def getModelandVector():
@@ -85,12 +86,22 @@ def generateResponse(name, rating, comment, predictedRating):
 
 def preprocessComment(comment):
     comment = comment.lower()
+
+    for word in helpline:
+      #print(word)
+      if word in comment:
+          #comment = comment.replace(word, "bakwas")
+          comment = "helpline number"
+          return comment
+
     for word in negativeWordsInRoman:
       #print(word)
       if word in comment:
           #comment = comment.replace(word, "bakwas")
           comment = "bakwas"
           return comment
+    
+
     return comment
 
 
@@ -100,13 +111,29 @@ def getResponse(name, rating, comment):
 
     print(processedComment)
 
-    new_query = [processedComment]
-    new_query_tfidf = vectorizer.transform(new_query)
-    predicted_star_rating = model.predict(new_query_tfidf)
-
-    predictedRating = float(predicted_star_rating[0])
-    finalResponse = generateResponse(name, rating, processedComment, predictedRating)
-    return finalResponse
+    if(processedComment == "helpline number"):
+        response = helplineFeedback
+        greetings = random.choice(greetingsList)
+        finalResponse = greetings + " " + name + " , " +  response
+        return finalResponse
+    elif(len(comment) > 30 and rating == 1 or rating == 2 or rating == 3):
+       response = negativeSuggestionFeedback
+       greetings = random.choice(greetingsList)
+       finalResponse = greetings + " " + name + " , " +  response
+       return finalResponse
+    elif(len(comment) > 30 and rating == 4 or rating == 5):
+       response = positiveSuggestionFeedback
+       greetings = random.choice(greetingsList)
+       finalResponse = greetings + " " + name + " , " +  response
+       return finalResponse
+    else:
+        new_query = [processedComment]
+        new_query_tfidf = vectorizer.transform(new_query)
+        predicted_star_rating = model.predict(new_query_tfidf)
+        predictedRating = float(predicted_star_rating[0])
+        finalResponse = generateResponse(name, rating, processedComment, predictedRating)
+        return finalResponse
+      
 
 
 #print(preprocessComment("app is not good"))
