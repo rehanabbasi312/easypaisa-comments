@@ -88,7 +88,8 @@ def preprocessComment(comment):
     for word in negativeWordsInRoman:
       #print(word)
       if word in comment:
-          comment = comment.replace(word, "bakwas")
+          #comment = comment.replace(word, "bakwas")
+          comment = "bakwas"
           return comment
     return comment
 
