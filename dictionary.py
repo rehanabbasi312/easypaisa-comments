@@ -10,7 +10,7 @@ highRating = ["""Thank you for providing us with a high rating. We apologize for
 your experience smoother. 💚 Please share the details of your issue with us through our inbox, and our team will 
 promptly address and resolve it for you. https://www.facebook.com/easypaisa/ 😊""","""Thank you for taking the time to rate us highly.🌟 We 
 truly appreciate your feedback, as it helps us identify areas for improvement and ensures we continue to deliver the best possible experience to
-all our users."""]
+all our users.You can also contact us on Whatsapp: https://wa.me/923411103737?text=Hi"""]
 
 lowRating = ["""We're delighted that you shared your positive experience. Please consider giving us a higher star rating. Keep using easypaisa! 
              ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚""", """Thank you for sharing your positive experience with us! 💚
@@ -47,7 +47,7 @@ happyComments = ["""We're so glad that you shared your positive experience here.
                    support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚"""]
 
 helpline = ["helpline", "helpline number", "personal assistance", "provide whatsapp number", "contact number", "number",
-            "help me", "contact information","loan"]
+            "help me", "contact information"]
 
 helplineFeedback = """Thank You for using easypaisa ✨. You can reach us out at. https://www.facebook.com/easypaisa/  or You can also contact 
                      us on Whatsapp: https://wa.me/923411103737?text=Hi"""
