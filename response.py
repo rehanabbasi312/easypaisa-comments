@@ -85,6 +85,7 @@ def generateResponse(name, rating, comment, predictedRating):
       return finalResponse
 
 def preprocessComment(comment):
+    #print("PREPROCESS", comment)
     comment = comment.lower()
 
     for word in helpline:
@@ -93,14 +94,14 @@ def preprocessComment(comment):
           #comment = comment.replace(word, "bakwas")
           comment = "helpline number"
           return comment
-
+    #print("PREPROCESS 2", comment)
     for word in negativeWordsInRoman:
       #print(word)
       if word in comment:
           #comment = comment.replace(word, "bakwas")
           comment = "bakwas"
           return comment
-    
+    #print("PREPROCESS 3", comment)
 
     return comment
 
@@ -111,21 +112,26 @@ def getResponse(name, rating, comment):
 
     print(processedComment)
 
-    if(processedComment == "helpline number"):
+    if(len(comment) > 90):
+        if(rating == 1 or rating == 2 or rating ==3):
+            response = negativeSuggestionFeedback
+            greetings = random.choice(greetingsList)
+            finalResponse = greetings + " " + name + " , " +  response
+            return finalResponse
+        
+        elif(rating == 4 or rating == 5):
+            response = positiveSuggestionFeedback
+            greetings = random.choice(greetingsList)
+            finalResponse = greetings + " " + name + " , " +  response
+            return finalResponse
+
+    elif(processedComment == "helpline number"):
         response = helplineFeedback
         greetings = random.choice(greetingsList)
         finalResponse = greetings + " " + name + " , " +  response
         return finalResponse
-    elif(len(comment) > 30 and rating == 1 or rating == 2 or rating == 3):
-       response = negativeSuggestionFeedback
-       greetings = random.choice(greetingsList)
-       finalResponse = greetings + " " + name + " , " +  response
-       return finalResponse
-    elif(len(comment) > 30 and rating == 4 or rating == 5):
-       response = positiveSuggestionFeedback
-       greetings = random.choice(greetingsList)
-       finalResponse = greetings + " " + name + " , " +  response
-       return finalResponse
+    
+    
     else:
         new_query = [processedComment]
         new_query_tfidf = vectorizer.transform(new_query)
