@@ -2,7 +2,7 @@ negativeWordsInRoman = ["ghatya","ghatia","baikar","not good","buri","ajeeb","ga
                         "disappointing","frustrating","frustrated","trash","terrible","awful","unusable","bekaar","worthless",
                         "mayoos kun","mayoos","failure","failed","bad","bura","ineffective","disliked","dislike", "chawal", "sust","sai nai",
                         "sahi nai", "nai sahi", "nai sai", "nend","not helpful","slow", "cluttered", "wrong", 
-                        "transactions", "bakwas", "bkwas"]
+                        "transactions", "bakwas", "bkwas", "not satisfied","error", "delays", "delay"]
 
 greetingsList = ["Hey", "Dear","Hello", "Hi"]
 
@@ -47,7 +47,7 @@ happyComments = ["""We're so glad that you shared your positive experience here.
                    support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚"""]
 
 helpline = ["helpline", "helpline number", "personal assistance", "provide whatsapp number", "contact number", "number",
-            "help me", "contact information"]
+            "help me", "contact information","loan"]
 
 helplineFeedback = """Thank You for using easypaisa ✨. You can reach us out at. https://www.facebook.com/easypaisa/  or You can also contact 
                      us on Whatsapp: https://wa.me/923411103737?text=Hi"""
