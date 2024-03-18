@@ -2,6 +2,7 @@ import pickle
 import random
 from dictionary import negativeWordsInRoman, apologiseComments, happyComments, greetingsList, highRating, lowRating, helpline
 from dictionary import helplineFeedback, negativeSuggestionFeedback, positiveSuggestionFeedback
+import requests
 
 
 def getModelandVector():
@@ -117,28 +118,33 @@ def getResponse(name, rating, comment):
             response = negativeSuggestionFeedback
             greetings = random.choice(greetingsList)
             finalResponse = greetings + " " + name + " , " +  response
-            return finalResponse
+            return finalResponse, "Complaints"
         
         elif(rating == 4 or rating == 5):
             response = positiveSuggestionFeedback
             greetings = random.choice(greetingsList)
             finalResponse = greetings + " " + name + " , " +  response
-            return finalResponse
+            return finalResponse, "Suggestion"
 
     elif(processedComment == "helpline number"):
         response = helplineFeedback
         greetings = random.choice(greetingsList)
         finalResponse = greetings + " " + name + " , " +  response
-        return finalResponse
+        return finalResponse, "Help"
     
     
     else:
+        category = ""
+        if(processedComment == "bakwas"):
+           category="Negative Comment"
+        else:
+           category="Positive Comment"
         new_query = [processedComment]
         new_query_tfidf = vectorizer.transform(new_query)
         predicted_star_rating = model.predict(new_query_tfidf)
         predictedRating = float(predicted_star_rating[0])
         finalResponse = generateResponse(name, rating, processedComment, predictedRating)
-        return finalResponse
+        return finalResponse, category
       
 
 

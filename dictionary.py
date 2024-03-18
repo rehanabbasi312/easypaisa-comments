@@ -10,44 +10,41 @@ highRating = ["""Thank you for providing us with a high rating. We apologize for
 your experience smoother. 💚 Please share the details of your issue with us through our inbox, and our team will 
 promptly address and resolve it for you. https://www.facebook.com/easypaisa/ 😊""","""Thank you for taking the time to rate us highly.🌟 We 
 truly appreciate your feedback, as it helps us identify areas for improvement and ensures we continue to deliver the best possible experience to
-all our users.You can also contact us on Whatsapp: https://wa.me/923411103737?text=Hi"""]
+all our users.💚"""]
 
-lowRating = ["""We're delighted that you shared your positive experience. Please consider giving us a higher star rating. Keep using easypaisa! 
-             ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚""", """Thank you for sharing your positive experience with us! 💚
-             Please consider giving us a higher star rating. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi"""]
+lowRating = [""""Thank you for your comment. Can you kindly explain your experience? We would like 
+             ensure that you had a great one but we received low rating in stars from your end. We'll be waiting 
+             to hear from you 💚"""]
 
 apologiseComments = ["""We are sorry for the inconvenience and would like to make your experience easy. 💚 Kindly share the details of your 
-                     issue in our inbox and our team will resolve it for you quickly. https://www.facebook.com/easypaisa/ You can also contact 
-                     us on Whatsapp: https://wa.me/923411103737?text=Hi""", """Thank you for reaching out to us! 😊, We apologise for the 
+                     issue in our inbox and our team will resolve it for you quickly. https://www.facebook.com/easypaisa/""", """Thank you for reaching out to us! 😊, We apologise for the 
                      inconvenience. Kindly let us know the details of your problem with screenshots in our inbox and our team will resolve it 
-                     right away. www.facebook.com/easypaisa/ 💚 You can also contact us on Whatsapp: https://wa.me/923411103737?text=Hi""", 
+                     right away. www.facebook.com/easypaisa/ 💚""", 
                      """We apologise for the inconvenience and would like to know about any issue you have faced to improve our services. 
-                     We'd be grateful if you could kindly share details with us on our Whatsapp: wa.me/923411103737?text=Hi""","""We apologize 
-                     for any inconvenience you've experienced. 💔 Please provide us with more information about your issue via our inbox, and 
-                     we'll work swiftly to resolve it for you. You can also reach out to us on WhatsApp for immediate assistance: 
-                     https://wa.me/923411103737?text=Hi""", """We understand your frustration and want to ensure your experience is seamless. 💼
-                       Kindly send us the details of your concern through our inbox, and our dedicated team will address it promptly. 
-                       Additionally, you can connect with us on WhatsApp for real-time support: https://wa.me/923411103737?text=Hi"""]
+                     We'd be grateful if you could kindly share details with us on https://www.facebook.com/easypaisa/""","""We apologize 
+                     for any inconvenience you've experienced. 💔 Please provide us with more information about your issue via our inbox, https://www.facebook.com/easypaisa/
+                     and we'll work swiftly to resolve it for you.""", """We understand your frustration and want to ensure your experience is seamless. 💼
+                    Kindly send us the details of your concern through our inbox https://www.facebook.com/easypaisa/, and our dedicated team will address it promptly. """]
 
 happyComments = ["""We're so glad that you shared your positive experience here. Keep using easypaisa! ✨ For any info & support, feel free to 
-                 reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚""","""We're so happy to have customers like you. 
-                 Thank you for your appreciation. Keep using easypaisa! For any info & support, feel free to reach out to us on 
-                 Whatsapp: https://wa.me/923411103737?text=Hi 💚""","""We're always here for you. Keep using easypaisa! ✨ For any info & support, 
-                 feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚""","""Thank you for your valuable feedback. Keep 
-                 using easypaisa to make your life easy every day! 🤙 For any info & support, feel free to reach out to us on 
-                 Whatsapp: https://wa.me/923411103737?text=Hi 💚""","""Thank you for rating us the best. Keep using easypaisa! ✨ For any info & 
-                 support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚""","""we are grateful for your support. 
-                 Keep using easypaisa! ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 
-                 💚","Your appreciation means a lot to us. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us on 
-                 Whatsapp: https://wa.me/923411103737?text=Hi 💚""","""We're so glad to know about your positive experience. Keep using easypaisa
-                   to make your life easy every day! 🤙 For any info & support, feel free to reach out to us on 
-                   Whatsapp: https://wa.me/923411103737?text=Hi 💚""","""Feedbacks like yours keep us going! Thank you for acknowledging us. Keep 
-                   using easypaisa. ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 
+                 reach out to us at https://www.facebook.com/easypaisa/ 💚""","""We're so happy to have customers like you. 
+                 Thank you for your appreciation. Keep using easypaisa! For any info & support, feel free to reach out to us at 
+                 https://www.facebook.com/easypaisa/ 💚""","""We're always here for you. Keep using easypaisa! ✨ For any info & support, 
+                 feel free to reach out to us at https://www.facebook.com/easypaisa/ 💚""","""Thank you for your valuable feedback. Keep 
+                 using easypaisa to make your life easy every day! 🤙 For any info & support, feel free to reach out to us at 
+                 https://www.facebook.com/easypaisa/ 💚""","""Thank you for rating us the best. Keep using easypaisa! ✨ For any info & 
+                 support, feel free to reach out to us at https://www.facebook.com/easypaisa/ 💚""","""we are grateful for your support. 
+                 Keep using easypaisa! ✨ For any info & support, feel free to reach out to us at https://www.facebook.com/easypaisa/ 
+                 💚","Your appreciation means a lot to us. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us at 
+                 https://www.facebook.com/easypaisa/ 💚""","""We're so glad to know about your positive experience. Keep using easypaisa
+                   to make your life easy every day! 🤙 For any info & support, feel free to reach out to us at 
+                   https://www.facebook.com/easypaisa/ 💚""","""Feedbacks like yours keep us going! Thank you for acknowledging us. Keep 
+                   using easypaisa. ✨ For any info & support, feel free to reach out to us at https://www.facebook.com/easypaisa/ 
                    💚""","""Your satisfaction is our utmost priority. We are glad to make your life easy. Keep using easypaisa! ✨ For any info & 
-                   support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚"""]
+                   support, feel free to reach out to us at https://www.facebook.com/easypaisa/ 💚"""]
 
 helpline = ["helpline", "helpline number", "personal assistance", "provide whatsapp number", "contact number", "number",
-            "help me", "contact information"]
+            "help me", "contact information", "help"]
 
 helplineFeedback = """Thank You for using easypaisa ✨. You can reach us out at. https://www.facebook.com/easypaisa/  or You can also contact 
                      us on Whatsapp: https://wa.me/923411103737?text=Hi"""
