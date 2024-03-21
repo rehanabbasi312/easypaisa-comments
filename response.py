@@ -113,7 +113,7 @@ def getResponse(name, rating, comment):
 
     print(processedComment)
 
-    if(len(comment) > 90):
+    if(len(comment) > 150):
         if(rating == 1 or rating == 2 or rating ==3):
             response = negativeSuggestionFeedback
             greetings = random.choice(greetingsList)
