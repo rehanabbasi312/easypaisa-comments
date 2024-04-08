@@ -3,9 +3,28 @@ from response import getResponse
 import requests
 app = Flask(__name__, static_url_path='', static_folder='static', template_folder='templates')
 
-def bot_api_calling(response):
+def bot_api_calling(name, rating, feedback, response, category):
     # Make API call here
-    api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={response}"
+    '''
+    Onestars ="★"
+    Twostars ="★★"
+    Threestars ="★★★"
+    Fourstars ="★★★★"
+    Fivestars ="★★★★★"
+    '''
+    starsOnRating = ""
+    if (rating == 1):
+        starsOnRating = "*"
+    elif(rating == 2):
+        starsOnRating = "**"
+    elif(rating == 3):
+        starsOnRating = "***"
+    elif(rating == 4):
+        starsOnRating = "****"
+    elif(rating == 5):
+        starsOnRating = "*****"
+    api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating} {category} [UserName: {name} Comment:{feedback} Response: {response}]"
+    #api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating}"
     response = requests.get(api_url)
 
 @app.route('/')
@@ -22,7 +41,7 @@ def api():
 
         # Call your Python script function
         response,category = getResponse(name, rating, feedback)
-        bot_api_calling(category)
+        bot_api_calling(name, rating, feedback, response, category)
 
         return jsonify({'response': response})
 

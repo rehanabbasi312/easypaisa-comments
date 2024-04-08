@@ -46,12 +46,13 @@ happyComments = ["""We're so glad that you shared your positive experience here.
 helpline = ["helpline", "helpline number", "personal assistance", "provide whatsapp number", "contact number", "number",
             "help me", "contact information", "help"]
 
-helplineFeedback = """Thank You for using easypaisa ✨. You can reach us out at. https://www.facebook.com/easypaisa/  or You can also contact 
-                     us on Whatsapp: https://wa.me/923411103737?text=Hi"""
+helplineFeedback = "Thank You for using easypaisa ✨. You can reach us out at. https://www.facebook.com/easypaisa/" 
 
 negativeSuggestionFeedback = """ Thank you for bringing this issue to our attention 🤙. We're sorry to hear that you're experiencing difficulties with 
-the Easypaisa app. Your satisfaction is our top priority, and we're committed to resolving this matter promptly. Feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚"""
+the Easypaisa app. Your satisfaction is our top priority, and we're committed to resolving this matter promptly. Feel free to reach out to us on https://www.facebook.com/easypaisa/ 💚"""
 
 positiveSuggestionFeedback = """Thank you for taking the time to share your suggestion with us!🤙 We're glad to hear that you're overall 
 satisfied with the Easypaisa app ✨. Your feedback is invaluable to us as we strive to continuously improve and enhance our services. Feel 
-free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚 HAPPY BANKING 😊"""
+free to reach out to us on https://www.facebook.com/easypaisa/ 💚 HAPPY BANKING 😊"""
+
+namingDict = ["donkey", "monkey"]

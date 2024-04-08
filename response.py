@@ -1,7 +1,7 @@
 import pickle
 import random
 from dictionary import negativeWordsInRoman, apologiseComments, happyComments, greetingsList, highRating, lowRating, helpline
-from dictionary import helplineFeedback, negativeSuggestionFeedback, positiveSuggestionFeedback
+from dictionary import helplineFeedback, negativeSuggestionFeedback, positiveSuggestionFeedback, namingDict
 import requests
 
 
@@ -21,8 +21,11 @@ def getModelandVector():
     return model, vectorizer
 
 def generateResponse(name, rating, comment, predictedRating):
+  temp = name
+  temp = temp.lower()
   
-  
+  if temp in namingDict:
+     name = "Valuable Customer"
   
 
   if(predictedRating == 1.0):
