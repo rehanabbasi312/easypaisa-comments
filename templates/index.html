@@ -36,11 +36,11 @@
         <form id="feedbackForm">
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" maxlength="50" required>
+                <input type="text" class="form-control" id="name" name="name"required>
             </div>
             <div class="form-group">
                 <label for="rating">Rating:</label>
-                <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" step="1" required>
+                <input type="number" class="form-control" id="rating" name="rating" required>
             </div>
             <div class="form-group">
                 <label for="comment">Comment:</label>
@@ -70,9 +70,10 @@
 
             // Validation
             if (name.value.length > 30) {
-                alert("Name should not exceed 30 characters.");
-                name.style.borderColor = "red";
-                return;
+                name.style.borderColor = ""
+                //alert("Name should not exceed 30 characters.");
+                //name.style.borderColor = "red";
+                //return;
             } else {
                 name.style.borderColor = ""; // Reset border color if no error
             }

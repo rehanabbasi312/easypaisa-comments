@@ -2,8 +2,10 @@ negativeWordsInRoman = ["ghatya","ghatia","baikar","not good","buri","ajeeb","ga
                         "disappointing","frustrating","frustrated","trash","terrible","awful","unusable","bekaar","worthless",
                         "mayoos kun","mayoos","failure","failed","bad","bura","ineffective","disliked","dislike", "chawal", "sust","sai nai",
                         "sahi nai", "nai sahi", "nai sai", "nend","not helpful","slow", "cluttered", "wrong", 
-                        "transactions", "bakwas", "bkwas", "not satisfied","error", "delays", "delay","not", "not working",
-                        "doesn't","can't","dont","no"]
+                        "bad transactions","stuck on transaction","stuck on transactions", "bakwas", "bkwas", "not satisfied","error", "delays", "delay", "not working",
+                        "doesn't","can't","dont","not good"]
+
+positiveWordsInRoman = ["not bad", "no charges"]
 
 greetingsList = ["Hey", "Dear","Hello", "Hi"]
 

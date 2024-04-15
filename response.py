@@ -1,7 +1,7 @@
 import pickle
 import random
 from dictionary import negativeWordsInRoman, apologiseComments, happyComments, greetingsList, highRating, lowRating, helpline
-from dictionary import helplineFeedback, negativeSuggestionFeedback, positiveSuggestionFeedback, namingDict
+from dictionary import helplineFeedback, negativeSuggestionFeedback, positiveSuggestionFeedback, namingDict, positiveWordsInRoman
 import requests
 
 
@@ -23,69 +23,74 @@ def getModelandVector():
 def generateResponse(name, rating, comment, predictedRating):
   temp = name
   temp = temp.lower()
-  
+  greetings = ""
   if temp in namingDict:
      name = "Valuable Customer"
+     greetings = "Dear"
+  elif len(temp) > 30:
+     name = "Valuable Customer"
+     greetings = "Dear"
+  else:
+     greetings = random.choice(greetingsList)
   
 
   if(predictedRating == 1.0):
     if(rating == 1 or rating == 2 or rating == 3):
       response = random.choice(apologiseComments)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
     elif(rating == 4 or rating == 5):
       response = random.choice(highRating)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
 
   elif(predictedRating == 2.0):
     if(rating == 1 or rating == 2 or rating == 3):
       response = random.choice(apologiseComments)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
     elif(rating == 4 or rating == 5):
       response = random.choice(highRating)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
 
   elif(predictedRating == 3.0):
     if(rating == 1 or rating == 2 or rating == 3):
       response = random.choice(apologiseComments)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
     elif(rating == 4 or rating == 5):
       response = random.choice(highRating)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
 
   elif(predictedRating == 4.0):
     if(rating == 1 or rating == 2 or rating == 3):
       response = random.choice(lowRating)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
     elif(rating == 4 or rating == 5):
       response = random.choice(happyComments)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
 
   elif(predictedRating == 5.0):
     if(rating == 1 or rating == 2 or rating == 3):
       response = random.choice(lowRating)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
     elif(rating == 4 or rating == 5):
       response = random.choice(happyComments)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
 
 def preprocessComment(comment):
@@ -104,6 +109,13 @@ def preprocessComment(comment):
       if word in comment:
           #comment = comment.replace(word, "bakwas")
           comment = "bakwas"
+          return comment
+      
+    for word in positiveWordsInRoman:
+      #print(word)
+      if word in comment:
+          #comment = comment.replace(word, "bakwas")
+          comment = "good"
           return comment
     #print("PREPROCESS 3", comment)
 
