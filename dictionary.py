@@ -38,7 +38,7 @@ happyComments = ["""We're so glad that you shared your positive experience here.
                  https://www.facebook.com/easypaisa/ 💚""","""Thank you for rating us the best. Keep using easypaisa! ✨ For any info & 
                  support, feel free to reach out to us at https://www.facebook.com/easypaisa/ 💚""","""we are grateful for your support. 
                  Keep using easypaisa! ✨ For any info & support, feel free to reach out to us at https://www.facebook.com/easypaisa/ 
-                 💚","Your appreciation means a lot to us. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us at 
+                 💚""","""Your appreciation means a lot to us. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us at 
                  https://www.facebook.com/easypaisa/ 💚""","""We're so glad to know about your positive experience. Keep using easypaisa
                    to make your life easy every day! 🤙 For any info & support, feel free to reach out to us at 
                    https://www.facebook.com/easypaisa/ 💚""","""Feedbacks like yours keep us going! Thank you for acknowledging us. Keep 
