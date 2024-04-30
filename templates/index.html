@@ -19,17 +19,40 @@
             padding: 20px;
             margin-top: 50px;
         }
-        .btn-primary {
-            background-color: #28a745;
-            border-color: #28a745;
+        .title-bar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
         }
-        .btn-primary:hover {
-            background-color: #218838;
-            border-color: #218838;
+        .title-bar button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .title-bar button:hover {
+            background-color: #45a049;
+        }
+        .title-bar button:first-child {
+            margin-right: auto;
         }
     </style>
 </head>
 <body>
+    <div class="title-bar">
+        <button onclick="redirectToEmail()">Email</button>
+        <button>Button 2</button>
+    </div>
 
     <div class="container">
         <h2 class="mb-4 text-center">Feedback Form</h2>
@@ -45,7 +68,10 @@
             <div class="form-group">
                 <label for="comment">Comment:</label>
                 <textarea class="form-control" id="comment" name="comment" maxlength="300" rows="3" required></textarea>
-                <div id="wordCount"></div>
+            </div>
+            <div class="form-group">
+                <label for="count">Count:</label>
+                <input type="number" class="form-control" id="count" name="count" required>
             </div>
             <button type="button" class="btn btn-primary btn-block" onclick="submitForm()">Submit</button>
         </form>
@@ -62,11 +88,16 @@
     <!-- Add a script to handle form submission -->
     <!-- Add a script to handle form submission -->
     <script>
+        function redirectToEmail() {
+            window.location.href = "/email";
+        }
+
         function submitForm() {
             // Get form data
             var name = document.getElementById("name");
             var rating = parseInt(document.getElementById("rating").value);
             var comment = document.getElementById("comment").value;
+            var count = document.getElementById("count").value;
 
             // Validation
             if (name.value.length > 30) {
@@ -101,7 +132,8 @@
             var formData = {
                 name: name.value,
                 rating: rating,
-                comment: comment
+                comment: comment,
+                count: count
             };
             //'https://easypaisaresponse.azurewebsites.net/api'
             //'http://127.0.0.1:5000/api'
@@ -124,6 +156,7 @@
             });
         }
     </script>
+
 
 </body>
 </html>

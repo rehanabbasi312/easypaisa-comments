@@ -3,7 +3,7 @@ from response import getResponse
 import requests
 app = Flask(__name__, static_url_path='', static_folder='static', template_folder='templates')
 
-def bot_api_calling(name, rating, feedback, response, category):
+def bot_api_calling(name, rating, feedback, response, category, count):
     # Make API call here
     '''
     Onestars ="★"
@@ -26,7 +26,9 @@ def bot_api_calling(name, rating, feedback, response, category):
 
     feedback = feedback.replace("&", "and")
     response = response.replace("&", "and")
-    api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating} {category} [UserName: {name} Comment:{feedback} Response: {response}]"
+    api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating} {category} [UserName: {name} Comment:{feedback} Response: {response} Count: {count}]"
+
+    #print(api_url)
     #api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating}"
     response = requests.get(api_url)
 
@@ -41,15 +43,20 @@ def api():
         name = data['name']
         rating = data['rating']
         feedback = data['comment']
+        count = data['count']
 
         # Call your Python script function
         response,category = getResponse(name, rating, feedback)
-        bot_api_calling(name, rating, feedback, response, category)
+        bot_api_calling(name, rating, feedback, response, category, count)
 
         return jsonify({'response': response})
 
     except Exception as e:
         return jsonify({'error': str(e)})
+
+@app.route('/email') 
+def email():
+    return render_template('email.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #87CEEB;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 60%;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    select {
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    .hidden {
+        display: none;
+    }
+    select {
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        width: 100%; /* Adjust the width as needed */
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Dynamic Form</h2>
+    <select id="formSelector" onchange="toggleForm()">
+        <option value="form1">Form 1</option>
+        <option value="form2">Form 2</option>
+    </select>
+
+    <form id="form1">
+        <label for="mobileNumber">Mobile Number:</label>
+        <input type="text" id="mobileNumber" name="mobileNumber" required><br>
+
+        <label for="transactionTime">Transaction Time:</label>
+        <input type="text" id="transactionTime" name="transactionTime" required><br>
+
+        <label for="transactionId">Transaction ID:</label>
+        <input type="text" id="transactionId" name="transactionId" required><br>
+
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <form id="form2" class="hidden">
+        <label for="mobileNumber2">Mobile Number:</label>
+        <input type="text" id="mobileNumber2" name="mobileNumber2" required><br>
+
+        <label for="transactionTime2">Transaction Time:</label>
+        <input type="text" id="transactionTime2" name="transactionTime2" required><br>
+
+        <label for="transactionId2" class="hidden">Transaction ID:</label>
+        <input type="text" id="transactionId2" name="transactionId2" class="hidden"><br>
+
+        <label for="amount2" class="hidden">Amount:</label>
+        <input type="text" id="amount2" name="amount2" class="hidden"><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<script>
+    function toggleForm() {
+        var selector = document.getElementById("formSelector");
+        var form1 = document.getElementById("form1");
+        var form2 = document.getElementById("form2");
+
+        if (selector.value === "form1") {
+            form1.classList.remove("hidden");
+            form2.classList.add("hidden");
+            document.getElementById("transactionId").classList.remove("hidden");
+            document.getElementById("amount").classList.remove("hidden");
+        } else if (selector.value === "form2") {
+            form1.classList.add("hidden");
+            form2.classList.remove("hidden");
+            document.getElementById("transactionId").classList.add("hidden");
+            document.getElementById("amount").classList.add("hidden");
+        }
+    }
+
+    // Call toggleForm initially to ensure correct form is displayed
+    toggleForm();
+</script>
+
+</body>
+</html>
