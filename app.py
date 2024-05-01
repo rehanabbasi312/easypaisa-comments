@@ -26,7 +26,7 @@ def bot_api_calling(name, rating, feedback, response, category, count):
 
     feedback = feedback.replace("&", "and")
     response = response.replace("&", "and")
-    api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating} {category} [UserName: {name} Comment:{feedback} Response: {response} Count: {count}]"
+    api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating} {category} [UserName: {name} Comment:{feedback} Response: {response}]&remaining={count}"
 
     #print(api_url)
     #api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating}"
