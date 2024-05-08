@@ -81,18 +81,18 @@
         <option value="form2">Form 2</option>
     </select>
 
-    <form id="form1">
+    <form id="form1" onsubmit="submitForm1()">
         <label for="mobileNumber">Mobile Number:</label>
-        <input type="text" id="mobileNumber" name="mobileNumber" required><br>
+        <input type="text" id="mobileNumber" name="mobileNumber" value="{{ identifiedNumber }}" required><br>
 
         <label for="transactionTime">Transaction Time:</label>
-        <input type="text" id="transactionTime" name="transactionTime" required><br>
+        <input type="text" id="transactionTime" name="transactionTime" value="{{ identifiedTransactionTime }}" required><br>
 
         <label for="transactionId">Transaction ID:</label>
-        <input type="text" id="transactionId" name="transactionId" required><br>
+        <input type="text" id="transactionId" name="transactionId" value="{{ identifiedTransactionId }}" required><br>
 
         <label for="amount">Amount:</label>
-        <input type="text" id="amount" name="amount" required><br>
+        <input type="text" id="amount" name="amount" value="{{ identifiedAmount }}" required><br>
 
         <input type="submit" value="Submit">
     </form>
@@ -115,11 +115,59 @@
 </div>
 
 <script>
+
+    function submitForm1() {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Get the values from the text fields
+            var mobileNumber = document.getElementById("mobileNumber").value;
+            var transactionTime = document.getElementById("transactionTime").value;
+            var transactionId = document.getElementById("transactionId").value;
+            var amount = document.getElementById("amount").value;
+
+            // Get the GUID from the URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var guid = urlParams.get('guid');
+
+            // Make an AJAX request to update the data in the database
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/update_data", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Display a success message or handle the response
+                    alert("YOUR COMPLAINT HAS BEEN REGISTERED");
+                    document.getElementById('mobileNumber').value = '';
+                    document.getElementById('transactionTime').value = '';
+                    document.getElementById('transactionId').value = '';
+                    document.getElementById('amount').value = '';
+                }
+            };
+            var data = JSON.stringify({
+                "guid": guid,
+                "identifiedNumber": mobileNumber,
+                "identifiedAmount": amount,
+                "identifiedTransactionId": transactionId,
+                "identifiedTransactionTime": transactionTime
+            });
+            xhr.send(data);
+        }
+
+    var defaultForm = 1;
+
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
     function toggleForm() {
         var selector = document.getElementById("formSelector");
         var form1 = document.getElementById("form1");
         var form2 = document.getElementById("form2");
-
+        /**
         if (selector.value === "form1") {
             form1.classList.remove("hidden");
             form2.classList.add("hidden");
@@ -130,11 +178,33 @@
             form2.classList.remove("hidden");
             document.getElementById("transactionId").classList.add("hidden");
             document.getElementById("amount").classList.add("hidden");
+        }**/
+        if (defaultForm === 1) {
+            selector.value = "form1"; // Set the value of the dropdown menu to form1
+            form1.classList.remove("hidden");
+            form2.classList.add("hidden");
+            document.getElementById("transactionId").classList.remove("hidden");
+            document.getElementById("amount").classList.remove("hidden");
+        } else if (defaultForm === 2) {
+            selector.value = "form2"; // Set the value of the dropdown menu to form2
+            form1.classList.add("hidden");
+            form2.classList.remove("hidden");
+            document.getElementById("transactionId").classList.add("hidden");
+            document.getElementById("amount").classList.add("hidden");
         }
+
+
     }
 
     // Call toggleForm initially to ensure correct form is displayed
     toggleForm();
+
+    var guid = getUrlParameter('guid');
+
+    // Print the value of 'guid' to the console
+    console.log('*************************************');
+    console.log('GUID:', guid);
+
 </script>
 
 </body>
