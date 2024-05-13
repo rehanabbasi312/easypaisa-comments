@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dynamic Form</title>
+<title>Complain Form</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -75,9 +75,9 @@
 <body>
 
 <div class="container">
-    <h2>Dynamic Form</h2>
+    <h2>Complaint Form</h2>
     <select id="formSelector" onchange="toggleForm()">
-        <option value="form1">Form 1</option>
+        <option value="form1">Money Transfer</option>
         <option value="form2">Form 2</option>
     </select>
 
@@ -93,6 +93,9 @@
 
         <label for="amount">Amount:</label>
         <input type="text" id="amount" name="amount" value="{{ identifiedAmount }}" required><br>
+
+        <label for="commentBox">Comment Box:</label>
+        <input type="text" id="commentBox" name="commentBox" value="{{ commentBox }}" required><br>
 
         <input type="submit" value="Submit">
     </form>
@@ -125,6 +128,7 @@
             var transactionTime = document.getElementById("transactionTime").value;
             var transactionId = document.getElementById("transactionId").value;
             var amount = document.getElementById("amount").value;
+            var comment = document.getElementById("commentBox").value;
 
             // Get the GUID from the URL
             var urlParams = new URLSearchParams(window.location.search);
@@ -142,6 +146,7 @@
                     document.getElementById('transactionTime').value = '';
                     document.getElementById('transactionId').value = '';
                     document.getElementById('amount').value = '';
+                    document.getElementById('commentBox').value = '';
                 }
             };
             var data = JSON.stringify({
@@ -149,7 +154,8 @@
                 "identifiedNumber": mobileNumber,
                 "identifiedAmount": amount,
                 "identifiedTransactionId": transactionId,
-                "identifiedTransactionTime": transactionTime
+                "identifiedTransactionTime": transactionTime,
+                "commentBox":comment
             });
             xhr.send(data);
         }

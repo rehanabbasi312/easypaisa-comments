@@ -86,6 +86,7 @@ def email():
         identifiedAmount = record['identifiedAmount']
         identifiedTransactionId = record['identifiedTransactionId']
         identifiedTransactionTime = record['identifiedTransactionTime']
+        commentBox = "Your Comment Here"
 
         # Render the template with the extracted values
         return render_template('email.html', 
@@ -97,7 +98,9 @@ def email():
                                identifiedIssue=identifiedIssue,
                                identifiedAmount=identifiedAmount,
                                identifiedTransactionId=identifiedTransactionId,
-                               identifiedTransactionTime=identifiedTransactionTime)
+                               identifiedTransactionTime=identifiedTransactionTime,
+                               commentBox = commentBox
+                               )
     else:
         # If no data is found for the given GUID, render the template without any data
         return render_template('email.html')
@@ -110,9 +113,14 @@ def update_data():
     identifiedAmount = data.get('identifiedAmount')
     identifiedTransactionId = data.get('identifiedTransactionId')
     identifiedTransactionTime = data.get('identifiedTransactionTime')
+    comment = data.get('commentBox')
 
+    print("********************************************CHECK******************************")
+    comment = str(comment)
+    print(type(comment))
+    print(comment)
     # Call the updateDataToUserComplain function
-    updateDataToUserComplain(guid, identifiedNumber, identifiedAmount, identifiedTransactionId, identifiedTransactionTime)
+    updateDataToUserComplain(guid, identifiedNumber, identifiedAmount, identifiedTransactionId, identifiedTransactionTime,comment)
 
     # Return a response (you can customize the response as needed)
     return jsonify({"message": "Data updated successfully"})

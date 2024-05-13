@@ -31,16 +31,16 @@ def insertDataIntoUserEmailTable(guid, sender_email, body, current_datetime_pkt)
         cursor.close()
         connection.close()
 
-def insertDataIntoUserComplainTable(userguid, emailmessage, messageresponse, identifiedNumber, identifiedIssue, identifiedAmount, identifiedTransactionId, identifiedTransactionTime):
+def insertDataIntoUserComplainTable(userguid, emailmessage, messageresponse, identifiedNumber, identifiedIssue, identifiedAmount, identifiedTransactionId, identifiedTransactionTime, commentBox):
     connection = ReturnDatabaseObject()
     # Define the SQL INSERT query
     sql_insert = """
-    INSERT INTO userComplain (userguid, emailmessage, messageresponse, identifiedNumber, identifiedIssue, identifiedAmount, identifiedTransactionId, identifiedTransactionTime)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO userComplain (userguid, emailmessage, messageresponse, identifiedNumber, identifiedIssue, identifiedAmount, identifiedTransactionId, identifiedTransactionTime, commentBox)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     """
 
     # Define the parameters to be inserted
-    param_values = (userguid, emailmessage, messageresponse, identifiedNumber, identifiedIssue, identifiedAmount, identifiedTransactionId, identifiedTransactionTime)
+    param_values = (userguid, emailmessage, messageresponse, identifiedNumber, identifiedIssue, identifiedAmount, identifiedTransactionId, identifiedTransactionTime, commentBox)
 
     # Create a cursor object
     cursor = connection.cursor()
@@ -69,7 +69,7 @@ def getDataFromUserComplain(mydb, guid):
     df = pd.read_sql_query(qry, mydb, params=(guid,))
     return df
 
-def updateDataToUserComplain(guid, identifiedNumber, identifiedAmount, identifiedTransactionId, identifiedTransactionTime):
+def updateDataToUserComplain(guid, identifiedNumber, identifiedAmount, identifiedTransactionId, identifiedTransactionTime, commentBox):
     # Define the SQL UPDATE query
     mydb = ReturnDatabaseObject()
     sql_update = """
@@ -77,12 +77,13 @@ def updateDataToUserComplain(guid, identifiedNumber, identifiedAmount, identifie
     SET identifiedNumber = ?,
         identifiedAmount = ?,
         identifiedTransactionId = ?,
-        identifiedTransactionTime = ?
+        identifiedTransactionTime = ?,
+        commentBox = ?
     WHERE userguid = ?
     """
 
     # Define the parameters to be updated
-    param_values = (identifiedNumber, identifiedAmount, identifiedTransactionId, identifiedTransactionTime, guid)
+    param_values = (identifiedNumber, identifiedAmount, identifiedTransactionId, identifiedTransactionTime,commentBox, guid)
 
     # Create a cursor object
     cursor = mydb.cursor()
