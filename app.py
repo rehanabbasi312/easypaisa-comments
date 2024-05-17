@@ -3,7 +3,6 @@ from response import getResponse
 import requests
 from db import ReturnDatabaseObject
 from data import getDataFromUserComplain, updateDataToUserComplain
-from emails_response import check_email
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -137,23 +136,8 @@ def update_data():
     # Return a response (you can customize the response as needed)
     return jsonify({"message": "Data updated successfully"})
 
-def run_flask_app():
-    app.run(debug=True, use_reloader=False)
-
-def run_email_processing():
-    i=0
-    while True:
-        logger.info(f"{i} loading...")
-        print(f"{i} loading...")
-        check_email()
-        time.sleep(120)  # Check email every 30 Seconds
-        i+=1
-
 if __name__ == '__main__':
-    with ThreadPoolExecutor(max_workers=2) as executor:
-        # Schedule the Flask app and email processing to run in parallel
-        executor.submit(run_email_processing)
-        executor.submit(run_flask_app)
+    app.run(debug=True)
         
     
 
