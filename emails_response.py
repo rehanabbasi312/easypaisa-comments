@@ -6,6 +6,11 @@ from datetime import datetime
 import pytz
 from data import insertDataIntoUserEmailTable, insertDataIntoUserComplainTable
 import re
+import logging
+
+# Set up basic logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def extract_Imp_Info(email_body):
@@ -91,6 +96,7 @@ SMTP_SERVER = 'mail.blinkitech.com'
 SMTP_PORT = 465
 
 def check_email():
+    logger.info(f"*********** Attempting to CHECK EMAIL ***********")
     # Connect to the IMAP server
     mail = imaplib.IMAP4_SSL(IMAP_SERVER, IMAP_PORT)
     mail.login(EMAIL, PASSWORD)
@@ -155,6 +161,7 @@ def check_email():
     mail.logout()
 
 def reply_to_sender(sender, msg, guid):
+    logger.info(f"*********** Attempting to REPLY EMAIL ***********")
     try:
         # Connect to the SMTP server
         server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT)
@@ -173,5 +180,7 @@ def reply_to_sender(sender, msg, guid):
         print("Reply sent successfully.")
     except smtplib.SMTPRecipientsRefused as e:
         print(f"Failed to send reply to {sender}: {e}")
+        logger.error(f"Failed to send reply to {sender}: {e}")
     except Exception as e:
         print(f"An error occurred while sending reply to {sender}: {e}")
+        logger.error(f"An error occurred while sending reply to {sender}: {e}")

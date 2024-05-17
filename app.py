@@ -7,6 +7,11 @@ from emails_response import check_email
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
+import logging
+
+# Set up basic logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 #from app import app
@@ -138,6 +143,7 @@ def run_flask_app():
 def run_email_processing():
     i=0
     while True:
+        logger.info(f"{i} loading...")
         print(f"{i} loading...")
         check_email()
         time.sleep(120)  # Check email every 30 Seconds
