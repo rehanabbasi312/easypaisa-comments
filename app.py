@@ -17,10 +17,10 @@ def email_checker():
 
 @app.route('/')
 def index():
-    loading_messages.append(f"Loading...")
+    #loading_messages.append(f"Loading...")
     print("Loading ... ")
     check_email()
-    return render_template('index.html', loading_messages=loading_messages)
+    return render_template('index.html')
 
 if __name__ == "__main__":
     # Start a separate thread for email checking

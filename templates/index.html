@@ -9,17 +9,13 @@
         function autoRefresh() {
             setTimeout(function() {
                 window.location.reload();
-            }, 10000); // 30,000 milliseconds = 30 seconds
+            }, 50000); // 30,000 milliseconds = 30 seconds
         }
         autoRefresh(); // Call the function when the page loads
     </script>
 </head>
 <body>
     <h1>Reading Email Inbox</h1>
-    <ul>
-        {% for message in loading_messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
+    <h4>Loading ...</h4>
 </body>
 </html>
