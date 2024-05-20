@@ -155,23 +155,24 @@ def check_email():
     mail.logout()
 
 def reply_to_sender(sender, msg, guid):
-    try:
-        # Connect to the SMTP server
-        server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT)
-        server.login(EMAIL, PASSWORD)
+    
+    # Connect to the SMTP server
+    server = smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT)
+    server.login(EMAIL, PASSWORD)
 
-        # Compose the reply email
-        subject = "Acknowledgement of Your Query: We're Here to Help!"
-        body = 'Dear Customer,\nI hope this email finds you well.\n\nI wanted to take a moment to acknowledge the query you recently submitted to us. Your feedback and inquiries are invaluable to us as they help us continually improve our services to better meet your needs.\n\nAdditionally, if you ever encounter any issues or have feedback about our services, we encourage you to use our dedicated complaints portal, where you can share your concerns transparently. You can access the portal through the following link:\nhttps://easypaisaresponse.azurewebsites.net/email?guid={}\n\nThank You for your patience and understanding.\n\nBest Regards\nYour Company Support Team'.format(guid)
-        message = f'Subject: {subject}\n\n{body}'
+    # Compose the reply email
+    subject = "Acknowledgement of Your Query: We're Here to Help!"
+    body = 'Dear Customer,\nI hope this email finds you well.\n\nI wanted to take a moment to acknowledge the query you recently submitted to us. Your feedback and inquiries are invaluable to us as they help us continually improve our services to better meet your needs.\n\nAdditionally, if you ever encounter any issues or have feedback about our services, we encourage you to use our dedicated complaints portal, where you can share your concerns transparently. You can access the portal through the following link:\nhttps://easypaisaresponse.azurewebsites.net/email?guid={}\n\nThank You for your patience and understanding.\n\nBest Regards\nYour Company Support Team'.format(guid)
+    message = f'Subject: {subject}\n\n{body}'
 
-        # Send the reply email
-        server.sendmail(EMAIL, sender, message)
+    # Send the reply email
+    server.sendmail(EMAIL, sender, message)
 
-        # Close the connection
-        server.quit()
-        print("Reply sent successfully.")
-    except smtplib.SMTPRecipientsRefused as e:
-        print(f"Failed to send reply to {sender}: {e}")
-    except Exception as e:
-        print(f"An error occurred while sending reply to {sender}: {e}")
+    # Close the connection
+    server.quit()
+    print("Reply sent successfully.")
+
+    #except smtplib.SMTPRecipientsRefused as e:
+    #    print(f"Failed to send reply to {sender}: {e}")
+    #except Exception as e:
+    #    print(f"An error occurred while sending reply to {sender}: {e}")
