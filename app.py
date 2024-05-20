@@ -1,23 +1,29 @@
-from flask import Flask, render_template, request
-from response import getResponse
-
+from flask import Flask, render_template
+from emails_response import check_email
+import threading
+import time
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/api', methods=['POST'])
+loading_messages = []
+
+def email_checker():
+    global loading_messages
+    i=0
+    while True:
+        loading_messages.append(f"{i} Loading...")
+        check_email()  # Perform email checking here
+        time.sleep(10)  # Check email every 2 minutes
+        i+=1
+
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        name = request.form['name']
-        rating = int(request.form['rating'])
-        feedback = request.form['feedback']
+    return render_template('index.html', loading_messages=loading_messages)
 
-        response = getResponse(name, rating, feedback)
-
-        return render_template('index.html', name=name, rating=rating, feedback=feedback, response=response)
-
-    return render_template('index.html')
-
-if __name__ == '__main__':
+if __name__ == "__main__":
+    # Start a separate thread for email checking
+    email_thread = threading.Thread(target=email_checker)
+    email_thread.daemon = True
+    email_thread.start()
+    
     app.run(debug=True)
-
