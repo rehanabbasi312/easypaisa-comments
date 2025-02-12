@@ -7,6 +7,7 @@ import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 import logging
+from urllib.parse import quote
 
 # Set up basic logging
 logging.basicConfig(level=logging.INFO)
@@ -41,11 +42,22 @@ def bot_api_calling(name, rating, feedback, response, category, count):
 
     feedback = feedback.replace("&", "and")
     response = response.replace("&", "and")
-    api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating} {category} [UserName: {name} Comment:{feedback} Response: {response}]&remaining={count}"
+
+    # Encode the text properly
+    text = f"{starsOnRating} {category} [UserName: {name} Comment:{feedback} Response: {response}]"
+    encoded_text = quote(text)
+
+    # Construct API URL
+    api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={encoded_text}&remaining={count}"
+
+    # Send GET request (ignore SSL errors)
+    response = requests.get(api_url, verify=False)
+
+    #api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating} {category} [UserName: {name} Comment:{feedback} Response: {response}]&remaining={count}"
 
     #print(api_url)
     #api_url = f"https://epbot.blinkitech.com/api/file/saveusertext?bot=14&text={starsOnRating}"
-    response = requests.get(api_url)
+    #response = requests.get(api_url)
 
 @app.route('/')
 def index():
@@ -62,8 +74,9 @@ def api():
 
         # Call your Python script function
         response,category = getResponse(name, rating, feedback)
-        bot_api_calling(name, rating, feedback, response, category, count)
 
+        bot_api_calling(name, rating, feedback, response, category, count)
+ 
         return jsonify({'response': response})
 
     except Exception as e:
