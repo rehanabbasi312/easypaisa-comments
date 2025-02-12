@@ -1,5 +1,8 @@
 import pickle
 import random
+from dictionary import negativeWordsInRoman, apologiseComments, happyComments, greetingsList, highRating, lowRating, helpline
+from dictionary import helplineFeedback, negativeSuggestionFeedback, positiveSuggestionFeedback, namingDict, positiveWordsInRoman
+import requests
 
 
 def getModelandVector():
@@ -18,81 +21,146 @@ def getModelandVector():
     return model, vectorizer
 
 def generateResponse(name, rating, comment, predictedRating):
+  temp = name
+  temp = temp.lower()
+  greetings = ""
+  if temp in namingDict:
+     name = "Valuable Customer"
+     greetings = "Dear"
+  elif len(temp) > 30:
+     name = "Valuable Customer"
+     greetings = "Dear"
+  else:
+     greetings = random.choice(greetingsList)
   
-  greetingsList = ["Hey", "Dear","Hello"]
-  highRating = "Thank you for providing us with a high rating. We apologize for any inconvenience and strive to make your experience smoother. 💚 Please share the details of your issue with us through our inbox, and our team will promptly address and resolve it for you. https://www.facebook.com/easypaisa/ 😊"
-  lowRating = "We're delighted that you shared your positive experience. Please consider giving us a higher star rating. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚"
-  apologiseComments = ["We are sorry for the inconvenience and would like to make your experience easy. 💚 Kindly share the details of your issue in our inbox and our team will resolve it for you quickly. https://www.facebook.com/easypaisa/ You can also contact us on Whatsapp: https://wa.me/923411103737?text=Hi Thank you for reaching out to us! 😊","We apologise for the inconvenience. Kindly let us know the details of your problem with screenshots in our inbox and our team will resolve it right away. www.facebook.com/easypaisa/ 💚 You can also contact us on Whatsapp: https://wa.me/923411103737?text=Hi", "We apologise for the inconvenience and would like to know about any issue you have faced to improve our services. We'd be grateful if you could kindly share details with us on our Whatsapp: wa.me/923411103737?text=Hi"]
-  happyComments = ["We're so glad that you shared your positive experience here. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚","We're so happy to have customers like you. Thank you for your appreciation. Keep using easypaisa! For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚","We're always here for you. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚","Thank you for your valuable feedback. Keep using easypaisa to make your life easy every day! 🤙 For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚","Thank you for rating us the best. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚","we are grateful for your support. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚","Your appreciation means a lot to us. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚","We're so glad to know about your positive experience. Keep using easypaisa to make your life easy every day! 🤙 For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚","Feedbacks like yours keep us going! Thank you for acknowledging us. Keep using easypaisa. ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚","Your satisfaction is our utmost priority. We are glad to make your life easy. Keep using easypaisa! ✨ For any info & support, feel free to reach out to us on Whatsapp: https://wa.me/923411103737?text=Hi 💚"]
 
   if(predictedRating == 1.0):
     if(rating == 1 or rating == 2 or rating == 3):
       response = random.choice(apologiseComments)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
     elif(rating == 4 or rating == 5):
-      response = highRating
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      response = random.choice(highRating)
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
 
   elif(predictedRating == 2.0):
     if(rating == 1 or rating == 2 or rating == 3):
       response = random.choice(apologiseComments)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
     elif(rating == 4 or rating == 5):
-      response = highRating
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      response = random.choice(highRating)
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
 
   elif(predictedRating == 3.0):
     if(rating == 1 or rating == 2 or rating == 3):
       response = random.choice(apologiseComments)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
     elif(rating == 4 or rating == 5):
-      response = highRating
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      response = random.choice(highRating)
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
 
   elif(predictedRating == 4.0):
     if(rating == 1 or rating == 2 or rating == 3):
-      response = lowRating
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      response = random.choice(lowRating)
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
     elif(rating == 4 or rating == 5):
       response = random.choice(happyComments)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
 
   elif(predictedRating == 5.0):
     if(rating == 1 or rating == 2 or rating == 3):
-      response = lowRating
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      response = random.choice(lowRating)
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
     elif(rating == 4 or rating == 5):
       response = random.choice(happyComments)
-      greetings = random.choice(greetingsList)
-      finalResponse = greetings + " " + name + " , " +  response
+      #greetings = random.choice(greetingsList)
+      finalResponse = greetings + " " + name + ", " +  response
       return finalResponse
+
+def preprocessComment(comment):
+    #print("PREPROCESS", comment)
+    comment = comment.lower()
+
+    for word in helpline:
+      #print(word)
+      if word in comment:
+          #comment = comment.replace(word, "bakwas")
+          comment = "helpline number"
+          return comment
+    #print("PREPROCESS 2", comment)
+    for word in negativeWordsInRoman:
+      #print(word)
+      if word in comment:
+          #comment = comment.replace(word, "bakwas")
+          comment = "bakwas"
+          return comment
+      
+    for word in positiveWordsInRoman:
+      #print(word)
+      if word in comment:
+          #comment = comment.replace(word, "bakwas")
+          comment = "good"
+          return comment
+    #print("PREPROCESS 3", comment)
+
+    return comment
 
 
 def getResponse(name, rating, comment):
     model, vectorizer = getModelandVector()
+    processedComment = preprocessComment(comment)
 
-    new_query = [comment]
-    new_query_tfidf = vectorizer.transform(new_query)
-    predicted_star_rating = model.predict(new_query_tfidf)
+    print(processedComment)
 
-    predictedRating = float(predicted_star_rating[0])
-    finalResponse = generateResponse(name, rating, comment, predictedRating)
-    return finalResponse
+    if(len(comment) > 150):
+        if(rating == 1 or rating == 2 or rating ==3):
+            response = negativeSuggestionFeedback
+            greetings = random.choice(greetingsList)
+            finalResponse = greetings + " " + name + " , " +  response
+            return finalResponse, "Complaints"
+        
+        elif(rating == 4 or rating == 5):
+            response = positiveSuggestionFeedback
+            greetings = random.choice(greetingsList)
+            finalResponse = greetings + " " + name + " , " +  response
+            return finalResponse, "Suggestion"
+
+    elif(processedComment == "helpline number"):
+        response = helplineFeedback
+        greetings = random.choice(greetingsList)
+        finalResponse = greetings + " " + name + " , " +  response
+        return finalResponse, "Help"
+    
+    
+    else:
+        category = ""
+        if(processedComment == "bakwas"):
+           category="Negative Comment"
+        else:
+           category="Positive Comment"
+        new_query = [processedComment]
+        new_query_tfidf = vectorizer.transform(new_query)
+        predicted_star_rating = model.predict(new_query_tfidf)
+        predictedRating = float(predicted_star_rating[0])
+        finalResponse = generateResponse(name, rating, processedComment, predictedRating)
+        return finalResponse, category
+      
+
+
+#print(preprocessComment("app is not good"))
